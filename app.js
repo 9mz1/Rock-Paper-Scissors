@@ -43,10 +43,8 @@ function playGame() {
             winnerInfo.textContent = 'YOU WIN!!!';
         } else if (humanScore < computerScore) {
             winnerInfo.textContent = 'YOU LOSE!!!';
-        } else if (humanScore === computerScore) {
+        } else{
             winnerInfo.textContent = 'TIE!!!';
-        } else {
-            alert('Error');
         }
     }
 
@@ -69,10 +67,16 @@ function playGame() {
             currentRound++;
             if (currentRound > totalRounds) {
                 scoreCalculate();
-                humanScore = 0;
-                computerScore = 0;
-                currentRound = 1;
-                // winnerInfo.textContent = '';
+                setTimeout(() => {
+                    // Reset game state after displaying winner
+                    humanScore = 0;
+                    computerScore = 0;
+                    currentRound = 1;
+                    rounds.textContent = 'Round: 1';
+                    gameInfo.textContent = '';
+                    scores.textContent = 'Player: 0 Computer: 0';
+                    winnerInfo.textContent = '';
+                }, 100); // Reset after 3 seconds
             }
         }
     });
