@@ -30,8 +30,6 @@ function playGame() {
                 scores.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
         } else if (humanChoice === computerChoice) {
             gameInfo.textContent = 'Both put the same choice, TIE!!';
-            humanScore++;
-            computerScore++;
             scores.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
         } else {
             gameInfo.textContent = `The Computer beat You, You Lose!!`; 
