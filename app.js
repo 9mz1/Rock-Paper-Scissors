@@ -1,6 +1,9 @@
 
-let choices = document.querySelector('.choices');
-let rounds = document.querySelector('#rounds');
+const choices = document.querySelector('.choices');
+const rounds = document.querySelector('#rounds');
+const gameInfo = document.querySelector('#gameInfo');
+const scores = document.querySelector('#scores');
+const winnerInfo = document.querySelector('#winnerInfo');
 
 
 // get computer choice
@@ -22,34 +25,30 @@ function playGame() {
         if (humanChoice == 0 && computerChoice == 2 ||
             humanChoice == 2 && computerChoice == 1 ||
             humanChoice == 3 && computerChoice == 0) {
-                alert('Round Won!');
+                gameInfo.textContent = `You beat the Computer, You Win!!`;
                 humanScore++;
-                console.log(`Player: ${humanScore}`);
-                console.log(`Computer: ${computerScore}`);
+                scores.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
         } else if (humanChoice === computerChoice) {
-            alert('TIE!!')
+            gameInfo.textContent = 'Both put the same choice, TIE!!';
             humanScore++;
             computerScore++;
-            console.log(`Player: ${humanScore}`);
-            console.log(`Computer: ${computerScore}`);
+            scores.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
         } else {
-            alert('Round Lost'); 
+            gameInfo.textContent = `The Computer beat You, You Lose!!`; 
             computerScore++ ;
-            console.log(`Player: ${humanScore}`);
-            console.log(`Computer: ${computerScore}`);
+            scores.textContent = `Player: ${humanScore} Computer: ${computerScore}`;
         }
     }
 
     function scoreCalculate(humanScore, computerScore) {
         if (humanScore > computerScore) {
-            // alert('You WON!!');
-            console.log('You WON!!');
+            winnerInfo.textContent = 'YOU WIN!!!';
         } else if (humanScore < computerScore) {
-            // alert('You LOST!');
-            console.log('You LOST!');
+            winnerInfo.textContent = 'YOU LOSE!!!';
+        } else if (humanScore === computerScore) {
+            winnerInfo.textContent = 'TIE!!!';
         } else {
-            // alert('TIE!!!');
-            console.log('TIE!!!');
+            alert('Error');
         }
     }
 
@@ -64,8 +63,7 @@ function playGame() {
         else if (target.id === 'scissor') humanChoice = 2;
 
         if (humanChoice !== undefined) {
-            
-            // console.log(`Round ${currentRound}`);
+            rounds.textContent = `Round: ${currentRound}`;
             const computerChoice = getComputerChoice();
             playRound(humanChoice, computerChoice);
 
@@ -76,6 +74,7 @@ function playGame() {
                 humanScore = 0;
                 computerScore = 0;
                 currentRound = 1;
+                // winnerInfo.textContent = '';
             }
         }
     });
